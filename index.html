@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background-attachment: fixed;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .background-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .background-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: moveBackground 20s infinite ease-in-out;
+        }
+
+        .background-element:nth-child(1) { width: 150px; height: 150px; top: 10%; left: 5%; animation-delay: 0s; }
+        .background-element:nth-child(2) { width: 200px; height: 200px; bottom: 15%; right: 10%; animation-delay: 5s; }
+        .background-element:nth-child(3) { width: 100px; height: 100px; top: 30%; right: 20%; animation-delay: 10s; }
+        .background-element:nth-child(4) { width: 180px; height: 180px; bottom: 5%; left: 25%; animation-delay: 15s; }
+
+        @keyframes moveBackground {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+            25% { transform: translate(20px, 30px) scale(1.1); opacity: 0.15; }
+            50% { transform: translate(0, 60px) scale(1.2); opacity: 0.2; }
+            75% { transform: translate(-20px, 30px) scale(1.1); opacity: 0.15; }
+            100% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+        }
+
+        body.light {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            color: #333;
+        }
+
+        body.dark {
+            background: linear-gradient(135deg, #1f1c2c 0%, #928dab 100%);
+            color: #ddd;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 450px;
+            width: 90%;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 0;
+        }
+
+        p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-top: 0;
+        }
+
+        a.button, button.secondary-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 35px;
+            font-size: 20px;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        a.button {
+            background: linear-gradient(45deg, #FF6B6B, #FFD072, #6BEEFF, #6BFF7E);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        a.button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            background-position: 100% 50%;
+        }
+
+        button.secondary-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 12px 25px;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        button.secondary-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body.light .container h1 { color: #333; text-shadow: none; }
+        body.light .container p { color: #666; }
+        body.light .container button.secondary-button { background: rgba(0, 0, 0, 0.05); border-color: rgba(0, 0, 0, 0.2); color: #333; }
+        body.light .container button.secondary-button:hover { background: rgba(0, 0, 0, 0.1); }
+
+        body.dark .container h1 { color: #fff; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); }
+        body.dark .container p { color: rgba(255, 255, 255, 0.8); }
+        body.dark .container button.secondary-button { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.4); color: rgba(255, 255, 255, 0.9); }
+        body.dark .container button.secondary-button:hover { background: rgba(255, 255, 255, 0.2); }
+
+    </style>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const currentURL = window.location.href;
+    let redirectTo = decodeURIComponent(currentURL.split('redirect_to=')[1] || '');
+
+    const titleText = 'Continue';
+    const primaryButtonText = 'Click here to proceed';
+    const instructionsText = 'You will be redirected automatically within 5 seconds.\nIf nothing happens, please click the button above.';
+    const backButtonText = 'Back';
+
+    document.getElementById('pageTitle').innerText = titleText;
+    const linkEl = document.getElementById('redirectLink');
+    linkEl.innerText = primaryButtonText;
+    linkEl.href = redirectTo;
+    document.getElementById('instructions').innerText = instructionsText;
+
+    const backButton = document.getElementById('backButton');
+    backButton.innerText = backButtonText;
+    backButton.addEventListener('click', function() {
+        if (history.length > 1) {
+            history.back();
+        } else {
+            alert('No previous page to go back to.');
+        }
+    });
+
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.add('light');
+    }
+
+    let redirectTimer;
+
+    if (redirectTo) {
+      redirectTimer = setTimeout(() => {
+        window.location.href = redirectTo;
+      }, 5000);
+
+      linkEl.addEventListener('click', function () {
+        clearTimeout(redirectTimer);
+      });
+    } else {
+      document.getElementById('instructions').innerText = 'No redirect link specified. You can go back.';
+      clearTimeout(redirectTimer);
+    }
+  });
+</script>
+</head>
+<body>
+    <div class="background-elements">
+        <div class="background-element"></div>
+        <div class="background-element"></div>
+        <div class="background-element"></div>
+        <div class="background-element"></div>
+    </div>
+    <div class="container">
+        <h1 id="pageTitle">Continue</h1>
+        <a id="redirectLink" class="button" href="#" target="_blank">Click here to proceed</a>
+        <p id="instructions">You will be redirected automatically within 5 seconds.<br>If nothing happens, please click the button above.</p>
+        <button id="backButton" class="secondary-button"></button>
+    </div>
+</body>
+</html>
