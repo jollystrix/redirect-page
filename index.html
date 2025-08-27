@@ -97,7 +97,7 @@
             margin-top: 0;
         }
 
-        a.button,  {
+        a.button, button.secondary-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -125,7 +125,20 @@
             background-position: 100% 50%;
         }
 
-    
+        button.secondary-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 12px 25px;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        button.secondary-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.2);
+        }
 
         @keyframes gradientAnimation {
             0% { background-position: 0% 50%; }
@@ -135,9 +148,13 @@
 
         body.light .container h1 { color: #333; text-shadow: none; }
         body.light .container p { color: #666; }
-      
+        body.light .container button.secondary-button { background: rgba(0, 0, 0, 0.05); border-color: rgba(0, 0, 0, 0.2); color: #333; }
+        body.light .container button.secondary-button:hover { background: rgba(0, 0, 0, 0.1); }
+
         body.dark .container h1 { color: #fff; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); }
         body.dark .container p { color: rgba(255, 255, 255, 0.8); }
+        body.dark .container button.secondary-button { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.4); color: rgba(255, 255, 255, 0.9); }
+        body.dark .container button.secondary-button:hover { background: rgba(255, 255, 255, 0.2); }
 
     </style>
 <script>
@@ -148,7 +165,7 @@
     const titleText = 'Continue';
     const primaryButtonText = 'Click here to proceed';
     const instructionsText = 'You will be redirected automatically within 5 seconds.\nIf nothing happens, please click the button above.';
-
+    const backButtonText = 'Back';
 
     document.getElementById('pageTitle').innerText = titleText;
     const linkEl = document.getElementById('redirectLink');
@@ -156,7 +173,15 @@
     linkEl.href = redirectTo;
     document.getElementById('instructions').innerText = instructionsText;
 
-
+    const backButton = document.getElementById('backButton');
+    backButton.innerText = backButtonText;
+    backButton.addEventListener('click', function() {
+        if (history.length > 1) {
+            history.back();
+        } else {
+            alert('No previous page to go back to.');
+        }
+    });
 
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.body.classList.add('dark');
@@ -192,6 +217,7 @@
         <h1 id="pageTitle">Continue</h1>
         <a id="redirectLink" class="button" href="#" target="_blank">Click here to proceed</a>
         <p id="instructions">You will be redirected automatically within 5 seconds.<br>If nothing happens, please click the button above.</p>
+        <!--<button id="backButton" class="secondary-button"></button>-->
     </div>
 </body>
 </html>
